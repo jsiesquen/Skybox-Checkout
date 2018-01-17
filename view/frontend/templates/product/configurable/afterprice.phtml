@@ -1,0 +1,111 @@
+<?php
+/**
+ * Copyright © 2017 SkyBox Checkout Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/* @codingStandardsIgnoreFile */
+
+/**
+ * Configurable Type: Showing prices within Widgets, product page and categories page
+ *
+ * @var $block \Skybox\Checkout\Block\Product\AfterPrice
+ */
+
+if ($block->isEnabled()):
+    $product    = $block->getProduct();
+    $price      = $block->getBasePrice();
+    $htmlId     = 'sbx_price' . $product->getId();
+    ?>
+    <div class="<?php /* @escapeNotVerified */ echo $htmlId; ?>">
+        <?php /* @escapeNotVerified */ echo $price; ?>
+    </div>
+    <?php
+    $currentProduct = $block->currentProductViewDetail();
+    if (!empty($currentProduct)
+        && ($currentProduct->getId() == $product->getId())
+    ):
+        ?>
+        <script>//<![CDATA[
+            require(['jquery', 'jquery/ui', 'domReady!'], function ($) {
+                $('body').on('updatePrice', function (evt, data) {
+                    var productIdSvr = '<?php echo $product->getId(); ?>';
+                    var swatchWidget = $('.swatch-opt').data('mage-SwatchRenderer');
+                    if (typeof swatchWidget === 'undefined') return false;
+
+                    var options = _.object(_.keys(swatchWidget.optionsMap), {});
+                    var swatchAttribute = swatchWidget.options.classes.attributeClass;
+
+                    swatchWidget.element.find('.' + swatchAttribute + '[option-selected]').each(function () {
+                        options[$(this).attr('attribute-id')] = $(this).attr('option-selected');
+                    });
+
+                    var productId = _.findKey(swatchWidget.options.jsonConfig.index, options);
+                    if (typeof productId === 'undefined')   return false
+
+                    var result          = swatchWidget.options.jsonConfig.optionPrices[productId];
+                    var basePriceField  = $('.sbx_price' + productIdSvr);
+                    if (typeof result !== 'undefined' && productId.length
+                            && basePriceField.length && $(  '#product-addtocart-button').css("display") !== 'none') {
+                        basePriceField.html('');
+                        $.ajax({
+                            url: "<?php /* @escapeNotVerified */ echo $block->escapeUrl($block->getBaseUrl()) . 'skbcheckout/multicalculate'; ?>",
+                            type: 'POST',
+                            data: {
+                                productId: productId,
+                                price: result.finalPrice.amount
+                            },
+                            beforeSend: function (xhr) {
+                                basePriceField.html('...');
+                                $('#product-addtocart-button').hide();
+                            }
+                        }).done(function (response) {
+                            var html = (response.status === 1) ? response.result.template : "";
+                            if (html !== '') {
+                                basePriceField.html(html);
+                                basePriceField.ready(function() {
+                                    $('#product-addtocart-button').show();
+                                    $(".skybox-price-set").each(function () {
+                                        var urlProductPrices = $(this).data("url-template");
+                                        if (urlProductPrices !== '')
+                                        {
+                                            $(this).load(urlProductPrices);
+                                        }
+                                    });
+                                });
+                            }
+                            else {
+                                jQuery('.<?php /* @escapeNotVerified */ echo $htmlId; ?>').html('<div class="price-retrieve" style="font-size: 14px; margin-bottom: 10px;">&nbsp;</div>');
+                            }
+                        }).fail(function () {
+                            jQuery('.<?php /* @escapeNotVerified */ echo $htmlId; ?>').html('<div class="price-no-retrieve" style="font-size: 14px; margin-bottom: 10px;">&nbsp;</div>');
+                        });
+                    }
+                });
+            });
+            //]]>
+        </script>
+    <?php elseif (trim($price) == ''): ?>
+        <style>
+            #product-addtocart-button { display: none; }
+        </style>
+        <script type="text/javascript">
+            (function() {
+                var notHidden = function() {
+                    return (jQuery('#product-addtocart-button').length == 0) &&
+                        (jQuery('.<?php /* @escapeNotVerified */ echo $htmlId; ?>').parent().find('.actions-primary').length == 0);
+                }
+                var fnc = function () {
+                    if (notHidden()) {
+                        setTimeout(fnc, 500);
+                    }
+                    else {
+                        jQuery('.<?php /* @escapeNotVerified */ echo $htmlId; ?>').parent().find('.actions-primary').hide();
+                        jQuery('.<?php /* @escapeNotVerified */ echo $htmlId; ?>').html('<div font-size: 14px; margin-bottom: 10px;">&nbsp;</div>');
+                    }
+                };
+                setTimeout(fnc, 500);
+            })();
+        </script>
+    <?php endif;
+endif; ?>

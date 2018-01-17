@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2017 SkyBox Checkout Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Catalog:etc/catalog_attributes.xsd">
+    <group name="quote_item">
+        <attribute name="skybox_product_id"/>
+        <attribute name="skybox_price"/>
+        <attribute name="skybox_customs"/>
+        <attribute name="skybox_shipping"/>
+        <attribute name="skybox_insurance"/>
+        <attribute name="skybox_total"/>
+        <attribute name="skybox_price_usd"/>
+        <attribute name="skybox_customs_usd"/>
+        <attribute name="skybox_shipping_usd"/>
+        <attribute name="skybox_insurance_usd"/>
+        <attribute name="skybox_total_usd"/>
+        <attribute name="skybox_guid"/>
+        <attribute name="skybox_row_total"/>
+        <attribute name="skybox_base_price"/>
+        <attribute name="skybox_base_price_usd"/>
+        <attribute name="skybox_adjust_total"/>
+        <attribute name="skybox_adjust_total_usd"/>
+        <attribute name="skybox_adjust_label"/>
+        <attribute name="skybox_concepts"/>
+        <attribute name="skybox_rmt"/>
+    </group>
+
+    <group name="sales_order">
+        <attribute name="skybox_product_id"/>
+        <attribute name="skybox_price"/>
+        <attribute name="skybox_customs"/>
+        <attribute name="skybox_shipping"/>
+        <attribute name="skybox_insurance"/>
+        <attribute name="skybox_total"/>
+        <attribute name="skybox_price_usd"/>
+        <attribute name="skybox_customs_usd"/>
+        <attribute name="skybox_shipping_usd"/>
+        <attribute name="skybox_insurance_usd"/>
+        <attribute name="skybox_total_usd"/>
+        <attribute name="skybox_guid"/>
+        <attribute name="skybox_row_total"/>
+        <attribute name="skybox_base_price"/>
+        <attribute name="skybox_base_price_usd"/>
+        <attribute name="skybox_adjust_total"/>
+        <attribute name="skybox_adjust_total_usd"/>
+        <attribute name="skybox_adjust_label"/>
+        <attribute name="skybox_concepts"/>
+        <attribute name="skybox_rmt"/>
+    </group>
+</config>

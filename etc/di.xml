@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2017 SkyBox Checkout Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Skybox\Checkout\Api\GenerateOrderInterface" type="Skybox\Checkout\Service\GenerateOrder" />
+    <preference for="Skybox\Checkout\Api\StatusOrderInterface" type="Skybox\Checkout\Service\StatusOrder"/>
+    <preference for="Skybox\Checkout\Api\Data\ShippingAddressInterface" type="Skybox\Checkout\Model\Data\ShippingAddress"/>
+    <preference for="Skybox\Checkout\Api\Data\TotalShoppingCartInterface" type="Skybox\Checkout\Model\Data\TotalShoppingCart"/>
+    <preference for="Skybox\Checkout\Api\Data\ConceptInterface" type="Skybox\Checkout\Model\Data\Concept"/>
+    <preference for="Skybox\Checkout\Api\Data\ProductInterface" type="Skybox\Checkout\Model\Data\Product"/>
+    <preference for="Skybox\Checkout\Api\Data\CustomsInterface" type="Skybox\Checkout\Model\Data\Customs"/>
+
+    <type name="Magento\Checkout\Model\Cart">
+        <plugin name="skybox_checkout_cart" type="Skybox\Checkout\Plugin\Checkout\CartPlugin" sortOrder="100" />
+    </type>
+    <type name="Magento\Checkout\Block\Cart\Item\Renderer">
+        <plugin name="Skybox_Checkout_item_renderer" type="Skybox\Checkout\Plugin\Cart\ItemRendererPlugin" sortOrder="100" />
+    </type>
+    <type name="Magento\Checkout\Controller\Index\Index">
+        <plugin name="skybox_checkout_checkout_button" type="Skybox\Checkout\Plugin\ButtonPlugin" sortOrder="10" />
+    </type>
+    <type name="Magento\Catalog\Controller\Adminhtml\Category\Save">
+        <plugin name="skybox_adminhtml_category_save" type="Skybox\Checkout\Plugin\Adminhtml\Category\Save" sortOrder="10" />
+    </type>
+    <type name="Magento\Tax\Block\Item\Price\Renderer">
+        <plugin name="Skybox_Checkout_minicart_quote_item_price" type="Skybox\Checkout\Plugin\Minicart\QuoteItemPrice" sortOrder="10" />
+    </type>
+    <type name="Magento\Checkout\Helper\Data">
+        <plugin name="Skybox_Checkout_minicart_price_helper" type="Skybox\Checkout\Plugin\Minicart\DataHelper" sortOrder="10" />
+    </type>
+    <type name="Magento\Tax\Plugin\Checkout\CustomerData\Cart">
+        <plugin name="Skybox_Checkout_minicart_price_subtotal" type="Skybox\Checkout\Plugin\Minicart\CustomerDataCart" sortOrder="10" />
+    </type>
+    <type name="Magento\Checkout\Block\Cart\CartTotalsProcessor">
+        <plugin name="skybox_remove_subtotal_concept" type="Skybox\Checkout\Plugin\Cart\RemoveSubtotalPlugin" sortOrder="10" />
+    </type>
+    <type name="Magento\Multishipping\Block\Checkout\Link">
+        <plugin name="skybox_remove_multiple_addresses" type="Skybox\Checkout\Plugin\Cart\RemoveMultipleAddressesPlugin" sortOrder="10" />
+    </type>
+    <type name="Magento\Checkout\Block\Cart\LayoutProcessor">
+    <plugin name="skybox_remove_estimate_shipping" type="Skybox\Checkout\Plugin\Cart\RemoveEstimateShipping" sortOrder="10" />
+    </type>
+    <type name="Magento\Framework\Pricing\Render">
+        <plugin name="skybox_product_priceRender" type="Skybox\Checkout\Plugin\Product\AfterPrice" />
+    </type>
+    <type name="Magento\ConfigurableProduct\Block\Product\View\Type\Configurable">
+        <plugin name="skybox_product_configurablePriceRender" type="Skybox\Checkout\Plugin\Product\ConfigurablePrice" />
+    </type>
+    <type name="Magento\Downloadable\Block\Catalog\Product\Links">
+        <plugin name="skybox_product_downloadableLink" type="Skybox\Checkout\Plugin\Product\DownloadableLink" />
+    </type>
+    <type name="Magento\Bundle\Block\Catalog\Product\View\Type\Bundle">
+        <plugin name="skybox_product_bundlePrice" type="Skybox\Checkout\Plugin\Product\BundlePrice" />
+    </type>
+    <type name="Skybox\Checkout\Carrier\Skybox">
+        <plugin name="hide_carrier_plugin" type="Skybox\Checkout\Plugin\HideCarrier"/>
+    </type>
+
+    <!-- Skip EAV Attributes Cache, -->
+    <type name="Magento\Eav\Model\Entity\AttributeCache">
+        <arguments>
+            <argument name="unsupportedTypes" xsi:type="array">
+                <item name="0" xsi:type="string">skybox_category_id</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

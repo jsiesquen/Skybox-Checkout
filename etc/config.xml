@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2017 SkyBox Checkout Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Skybox:etc/config.xsd">
+    <default>
+        <skyboxcheckout>
+            <general>
+                <skb_enable_frontend>0</skb_enable_frontend>
+                <skb_weight_unit>LBS</skb_weight_unit>
+                <skb_api_response>0</skb_api_response>
+                <skb_store_type>1</skb_store_type>
+            </general>
+        </skyboxcheckout>
+        <system>
+            <media_storage_configuration>
+                <allowed_resources>
+                    <skyboxcheckout_folder>skybox</skyboxcheckout_folder>
+                </allowed_resources>
+            </media_storage_configuration>
+        </system>
+        <payment>
+            <skybox_checkout_payment>
+                <active>1</active>
+                <title>SkyBox Checkout</title>
+                <model>Skybox\Checkout\Payment\Skybox</model>
+                <!--<order_status>pending_payment</order_status>
+                <instructions>Instruction.</instructions>
+                <payment_action>true</payment_action>
+                <model>Skybox\Checkout\Payment\Skybox</model>
+                <group>offline</group>-->
+            </skybox_checkout_payment>
+        </payment>
+        <carriers>
+            <skybox_checkout_shipping>
+                <active>1</active>
+                <sallowspecific>0</sallowspecific>
+                <model>Skybox\Checkout\Carrier\Skybox</model>
+                <name>SkyBox Checkout</name>
+                <price>0</price>
+                <title>SkyBox Checkout</title>
+                <type>I</type>
+                <specificerrmsg>This shipping method is not available. To use this shipping method, please contact us.
+                </specificerrmsg>
+                <handling_type>F</handling_type>
+            </skybox_checkout_shipping>
+        </carriers>
+    </default>
+</config>

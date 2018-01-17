@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2017 SkyBox Checkout Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/generateorder" method="POST">
+        <service class="Skybox\Checkout\Api\GenerateOrderInterface" method="create"/>
+        <resources>
+            <resource ref="Skybox_Checkout::createOrder"/>
+        </resources>
+    </route>
+    <route url="/V1/setstatusorder" method="POST">
+        <service class="Skybox\Checkout\Api\StatusOrderInterface" method="update"/>
+        <resources>
+            <resource ref="Skybox_Checkout::updateStatusOrder"/>
+        </resources>
+    </route>
+</routes>

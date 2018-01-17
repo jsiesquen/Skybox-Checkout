@@ -1,0 +1,80 @@
+<?php
+/**
+ * Copyright © 2017 SkyBox Checkout Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/* @codingStandardsIgnoreFile */
+
+/**
+ * SkyBox Checkout - Shopping cart template
+ *
+ * @var $block \Skybox\Checkout\Block\Product\AfterPrice
+ */
+
+if ($block->isEnabled()):
+    $product = $block->getProduct();
+    ?>
+    <script>//<![CDATA[
+        require(['jquery', 'jquery/ui', 'domReady!'], function ($) {
+            var activeScript = 0;
+            var productPrice = '<?php /* @escapeNotVerified */ echo $product->getPriceInfo()->getPrice('final_price')->getMinimalPrice(); ?>';
+            var productId = '<?php /* @escapeNotVerified */ echo $product->getId(); ?>';
+            var bundleStorage = [];
+            var finalPrice = productPrice;
+            $('.bundle-options-wrapper').on('click', 'input', function () {
+                activeScript = 1;
+            });
+            $('body').on('updatePrice', function (e, data) {
+                var indexOption = _.keys(data)[0];
+                var dataPrice = data[indexOption].finalPrice.amount;
+                if (activeScript) {
+                    if (indexOption in bundleStorage) {
+                        finalPrice = parseFloat(finalPrice) - parseFloat(bundleStorage[indexOption]);
+                    }
+                    finalPrice = parseFloat(finalPrice) + parseFloat(dataPrice);
+                    bundleStorage[indexOption] = dataPrice;
+                    basePriceField = $('.sbx_price_configured');
+                    if (finalPrice > 0 && productId.length && basePriceField.length) {
+                        $('#product-addtocart-button').hide();
+                        $.ajax({
+                            url: "<?php /* @escapeNotVerified */ echo $block->escapeUrl($block->getBaseUrl()) . 'skbcheckout/multicalculate'; ?>",
+                            type: 'POST',
+                            data: {
+                                productId: productId,
+                                price: finalPrice.toFixed(2),
+                            },
+                            beforeSend: function (xhr) {
+                                basePriceField.html('...');
+                            }
+                        })
+                            .done(function (data, textStatus, xhr) {
+                                var html = '';
+                                if (data.status == 1) {
+                                    html = data.result.template;
+                                }
+                                basePriceField.html(html);
+                                $('#product-addtocart-button').show();
+                            })
+                            .fail(function () {
+                                console.log('error');
+                                basePriceField.html('-');
+                            })
+                            .always(function (data) {
+                            });
+                    }
+                } else {
+                    bundleStorage[indexOption] = dataPrice;
+                }
+            });
+
+            function getRandomInt(min, max) {
+                return Math.floor(Math.random() * (max - min + 1)) + min;
+            }
+
+            function getTimeStamp() {
+                return new Date().getTime();
+            }
+        //]]>
+    </script>
+<?php endif; ?>

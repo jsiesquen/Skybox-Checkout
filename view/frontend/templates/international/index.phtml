@@ -1,0 +1,23 @@
+<?php
+/**
+ * Copyright © 2017 SkyBox Checkout Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/* @codingStandardsIgnoreFile */
+
+?>
+<style type="text/css">
+    #iframe_skybox_checkout {width: 100%;}
+</style>
+<iframe id="iframe_skybox_checkout" src="<?php /* @escapeNotVerified */ echo $block->escapeUrl($url) ?>" frameborder="0" scrolling="no"></iframe>
+<div class="cssload-container-iframe">
+    <div class="cssload-zenith-iframe"></div>
+</div>
+<script type="text/javascript">//<![CDATA[
+    var SKYBOX_INT_HEIGHT = "<?php /* @escapeNotVerified */ echo $height; ?>";
+    //]]>
+</script>
+<script src="<?php /* @escapeNotVerified */ echo $block->escapeUrl($jsAsset); ?>"></script>
+<script src="<?php /* @escapeNotVerified */ echo $block->escapeUrl($resetJsAsset); ?>"></script>
+

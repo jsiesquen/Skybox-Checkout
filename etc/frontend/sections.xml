@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Customer:etc/sections.xsd">
+    <action name="Skybox_Checkout/Process/Index">
+        <section name="cart"/>
+        <section name="checkout-data"/>
+    </action>
+    <action name="Skybox_Checkout/International/Success">
+        <section name="cart"/>
+        <section name="checkout-data"/>
+    </action>
+    <action name="skbcheckout/international/success">
+        <section name="cart"/>
+        <section name="checkout-data"/>
+    </action>
+    <action name="skbcheckout/process">
+        <section name="cart"/>
+        <section name="checkout-data"/>
+    </action>
+    <action name="skbcheckout/process/reset">
+        <section name="cart"/>
+        <section name="checkout-data"/>
+    </action>
+</config>

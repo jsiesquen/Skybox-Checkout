@@ -1,0 +1,46 @@
+<?php
+/**
+ * Copyright © 2017 SkyBox Checkout Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/* @codingStandardsIgnoreFile */
+
+/**
+ * Downloadable Type: Showing prices within Widgets, product page and categories page
+ *
+ * @var $block \Skybox\Checkout\Block\Product\AfterPrice
+ */
+
+if ($block->isEnabled()):
+    $product    = $block->getProduct();
+    $price      = $block->getBasePrice();
+    $htmlId     = 'sbx_price' . $product->getId();
+    ?>
+    <div class="<?php /* @escapeNotVerified */ echo $htmlId; ?>">
+        <?php /* @escapeNotVerified */ echo $price; ?>
+    </div>
+    <?php if (trim($price) == ''): ?>
+        <style>
+            #product-addtocart-button { display: none; }
+        </style>
+        <script type="text/javascript">
+            (function() {
+                var notHidden = function() {
+                    return (jQuery('#product-addtocart-button').length == 0) &&
+                        (jQuery('.<?php /* @escapeNotVerified */ echo $htmlId; ?>').parent().find('.actions-primary').length == 0);
+                }
+                var fnc = function () {
+                    if (notHidden()) {
+                        setTimeout(fnc, 500);
+                    }
+                    else {
+                        jQuery('.<?php /* @escapeNotVerified */ echo $htmlId; ?>').parent().find('.actions-primary').hide();
+                        jQuery('.<?php /* @escapeNotVerified */ echo $htmlId; ?>').html('<div style="font-size: 14px; margin-bottom: 10px;">&nbsp;</div>');
+                    }
+                };
+                setTimeout(fnc, 500);
+            })();
+        </script>
+    <?php endif;
+endif; ?>

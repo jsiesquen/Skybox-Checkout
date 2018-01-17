@@ -1,0 +1,108 @@
+<?php
+/**
+ * Copyright © 2017 SkyBox Checkout Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/* @codingStandardsIgnoreFile */
+
+/**
+ * SkyBox Checkout Checkout
+ *
+ * @var $block \Skybox\Checkout\Block\Cart
+ */
+
+$helperData = $block->getDataHelper();
+$allow      = $helperData->allowed();
+
+if ($allow->isCartButtonSkyboxEnabled()) {
+    ?>
+    <style media="screen" type="text/css">
+        #container2 {
+            clear: left;
+            float: left;
+            width: 100%;
+        }
+
+        #container1 {
+            float: left;
+            width: 100%;
+            position: relative;
+            right: 50%;
+        }
+
+        #col-left {
+            float: left;
+            width: 46%;
+            position: relative;
+            left: 54%;
+            text-align: right;
+        }
+
+        #col-right {
+            float: left;
+            width: 46%;
+            position: relative;
+            left: 55%;
+        }
+
+        #container2 a {
+            text-decoration: none;
+        }
+
+        .skx-cp-btn-intlckeckout {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #007ac4;
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            line-height: normal;
+            color: #ffffff;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+            padding: 14px 20px;
+            transition: background 0.5s ease 0s, color 0.5s ease 0s;
+            border: none;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+        }
+
+        .skx-cp-btn-intlckeckout:hover {
+            background-color: #319bdb;
+            text-decoration: none;
+            transition: background 0.5s ease 0s, color 0.5s ease 0s;
+        }
+
+        .skx-cp-btn-intlckeckout span {
+            color: #ffffff;
+        }
+
+        .skx-cp-txt-intlcheckout {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .skx-cp-txt-intlcheckout strong {
+            font-weight: 600;
+            color: #007ac4;
+        }
+    </style>
+    <div id="container2">
+        <a href="<?php echo $block->getUrl('skbcheckout/process',
+            [
+                '_query' => [
+                    'return_url' => $block->getUrl('skbcheckout/international')
+                ]
+            ]);
+        ?>">
+
+            <p class="skx-cp-btn-intlckeckout">International Checkout</p>
+        </a>
+        <p class="skx-cp-txt-intlcheckout">
+            Pay all charges online in <strong>local currency</strong>. 100% Guarantee.
+        </p>
+    </div>
+<?php } ?>

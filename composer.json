@@ -1,0 +1,33 @@
+{
+  "name": "skybox/checkout",
+  "description": "SkyBox Checkout plugin for Magento2",
+  "type": "magento2-module",
+  "version": "1.0.0",
+  "license": [
+    "OSL-3.0",
+    "AFL-3.0"
+  ],
+  "keywords": [
+    "merchant",
+    "magento",
+    "skyboxcheckout",
+    "ecommerce"
+  ],
+  "homepage": "https://www.skyboxcheckout.com/",
+  "authors": [
+    {
+      "name": "SkyBoxCheckout",
+      "email": "plugin@skyboxcheckout.com",
+      "homepage": "https://www.skyboxcheckout.com/",
+      "role": "Developer"
+    }
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Skybox\\Checkout\\": ""
+    }
+  }
+}

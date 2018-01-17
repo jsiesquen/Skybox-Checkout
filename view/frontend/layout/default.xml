@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<head>
+	</head>
+	<body>
+		<referenceContainer name="after.body.start">
+			<block ifconfig="skyboxcheckout/settings/skb_enable_frontend" cacheable="false" class="Skybox\Checkout\Block\Cart" name="skybox.cart.top" template="Skybox_Checkout::default/cart.phtml"/>
+		</referenceContainer>
+	</body>
+</page>

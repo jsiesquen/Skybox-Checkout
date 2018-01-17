@@ -1,0 +1,392 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2017 SkyBOX Checkout Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:DataObject/etc/fieldset.xsd">
+    <scope id="global">
+        <fieldset id="quote_convert_item">
+            <field name="skybox_product_id">
+                <aspect name="to_order_item"/>
+            </field>
+            <field name="skybox_price">
+                <aspect name="to_order_item"/>
+            </field>
+            <field name="skybox_customs">
+                <aspect name="to_order_item"/>
+            </field>
+            <field name="skybox_shipping">
+                <aspect name="to_order_item"/>
+            </field>
+            <field name="skybox_insurance">
+                <aspect name="to_order_item"/>
+            </field>
+            <field name="skybox_total">
+                <aspect name="to_order_item"/>
+            </field>
+            <field name="skybox_price_usd">
+                <aspect name="to_order_item"/>
+            </field>
+            <field name="skybox_customs_usd">
+                <aspect name="to_order_item"/>
+            </field>
+            <field name="skybox_shipping_usd">
+                <aspect name="to_order_item"/>
+            </field>
+            <field name="skybox_insurance_usd">
+                <aspect name="to_order_item"/>
+            </field>
+            <field name="skybox_total_usd">
+                <aspect name="to_order_item"/>
+            </field>
+            <field name="skybox_guid">
+                <aspect name="to_order_item"/>
+            </field>
+            <field name="skybox_row_total">
+                <aspect name="to_order_item"/>
+            </field>
+            <field name="skybox_base_price">
+                <aspect name="to_order_item"/>
+            </field>
+            <field name="skybox_base_price_usd">
+                <aspect name="to_order_item"/>
+            </field>
+            <field name="skybox_adjust_total">
+                <aspect name="to_order_item"/>
+            </field>
+            <field name="skybox_adjust_total_usd">
+                <aspect name="to_order_item"/>
+            </field>
+            <field name="skybox_adjust_label">
+                <aspect name="to_order_item"/>
+            </field>
+            <field name="skybox_concepts">
+                <aspect name="to_order_item"/>
+            </field>
+            <field name="skybox_rmt">
+                <aspect name="to_order_item"/>
+            </field>
+        </fieldset>
+        <fieldset id="sales_convert_quote_address">
+            <field name="skybox_subtotal">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+            </field>
+            <field name="skybox_base_subtotal">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+            </field>
+            <field name="skybox_grand_total">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+            </field>
+            <field name="skybox_base_grand_total">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+            </field>
+            <field name="skybox_customs_total">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+            </field>
+            <field name="skybox_customs_total_usd">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+            </field>
+            <field name="skybox_taxes_total">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+            </field>
+            <field name="skybox_taxes_total_usd">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+            </field>
+            <field name="skybox_handling_total">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+            </field>
+            <field name="skybox_handling_total_usd">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+            </field>
+            <field name="skybox_shipping_total">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+            </field>
+            <field name="skybox_shipping_total_usd">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+            </field>
+            <field name="skybox_insurance_total">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+            </field>
+            <field name="skybox_insurance_total_usd">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+            </field>
+            <field name="skybox_clearence_total">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+            </field>
+            <field name="skybox_clearence_total_usd">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+            </field>
+            <field name="skybox_duties_total">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+            </field>
+            <field name="skybox_duties_total_usd">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+            </field>
+            <field name="skybox_others_total">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+            </field>
+            <field name="skybox_others_total_usd">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+            </field>
+            <field name="skybox_adjust_total">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+            </field>
+            <field name="skybox_adjust_total_usd">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+            </field>
+            <field name="skybox_concepts">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+            </field>
+            <field name="skybox_rmt">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+            </field>
+        </fieldset>
+        <fieldset id="sales_convert_quote">
+            <field name="skybox_subtotal">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+            </field>
+            <field name="skybox_base_subtotal">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+            </field>
+            <field name="skybox_grand_total">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+            </field>
+            <field name="skybox_base_grand_total">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+            </field>
+            <field name="skybox_customs_total">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+            </field>
+            <field name="skybox_customs_total_usd">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+            </field>
+            <field name="skybox_taxes_total">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+            </field>
+            <field name="skybox_taxes_total_usd">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+            </field>
+            <field name="skybox_handling_total">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+            </field>
+            <field name="skybox_handling_total_usd">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+            </field>
+            <field name="skybox_shipping_total">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+            </field>
+            <field name="skybox_shipping_total_usd">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+            </field>
+            <field name="skybox_insurance_total">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+            </field>
+            <field name="skybox_insurance_total_usd">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+            </field>
+            <field name="skybox_clearence_total">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+            </field>
+            <field name="skybox_clearence_total_usd">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+            </field>
+            <field name="skybox_duties_total">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+            </field>
+            <field name="skybox_duties_total_usd">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+            </field>
+            <field name="skybox_others_total">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+            </field>
+            <field name="skybox_others_total_usd">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+            </field>
+            <field name="skybox_adjust_total">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+            </field>
+            <field name="skybox_adjust_total_usd">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+            </field>
+            <field name="skybox_concepts">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+            </field>
+            <field name="skybox_rmt">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+            </field>
+        </fieldset>
+        <fieldset id="sales_convert_order_item">
+            <field name="skybox_subtotal">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+                <aspect name="to_quote_item" />
+            </field>
+            <field name="skybox_base_subtotal">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+                <aspect name="to_quote_item" />
+            </field>
+            <field name="skybox_grand_total">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+                <aspect name="to_quote_item" />
+            </field>
+            <field name="skybox_base_grand_total">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+                <aspect name="to_quote_item" />
+            </field>
+            <field name="skybox_customs_total">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+                <aspect name="to_quote_item" />
+            </field>
+            <field name="skybox_customs_total_usd">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+                <aspect name="to_quote_item" />
+            </field>
+            <field name="skybox_taxes_total">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+                <aspect name="to_quote_item" />
+            </field>
+            <field name="skybox_taxes_total_usd">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+                <aspect name="to_quote_item" />
+            </field>
+            <field name="skybox_handling_total">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+                <aspect name="to_quote_item" />
+            </field>
+            <field name="skybox_handling_total_usd">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+                <aspect name="to_quote_item" />
+            </field>
+            <field name="skybox_shipping_total">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+                <aspect name="to_quote_item" />
+            </field>
+            <field name="skybox_shipping_total_usd">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+                <aspect name="to_quote_item" />
+            </field>
+            <field name="skybox_insurance_total">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+                <aspect name="to_quote_item" />
+            </field>
+            <field name="skybox_insurance_total_usd">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+                <aspect name="to_quote_item" />
+            </field>
+            <field name="skybox_clearence_total">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+                <aspect name="to_quote_item" />
+            </field>
+            <field name="skybox_clearence_total_usd">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+                <aspect name="to_quote_item" />
+            </field>
+            <field name="skybox_duties_total">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+                <aspect name="to_quote_item" />
+            </field>
+            <field name="skybox_duties_total_usd">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+                <aspect name="to_quote_item" />
+            </field>
+            <field name="skybox_others_total">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+                <aspect name="to_quote_item" />
+            </field>
+            <field name="skybox_others_total_usd">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+                <aspect name="to_quote_item" />
+            </field>
+            <field name="skybox_adjust_total">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+                <aspect name="to_quote_item" />
+            </field>
+            <field name="skybox_adjust_total_usd">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+                <aspect name="to_quote_item" />
+            </field>
+            <field name="skybox_concepts">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+                <aspect name="to_quote_item" />
+            </field>
+            <field name="skybox_rmt">
+                <aspect name="to_order" />
+                <aspect name="to_order_address" />
+                <aspect name="to_quote_item" />
+            </field>
+        </fieldset>
+    </scope>
+</config>

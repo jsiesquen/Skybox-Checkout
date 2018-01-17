@@ -1,0 +1,84 @@
+<?php
+/**
+ * Copyright © 2017 SkyBox Checkout Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @codingStandardsIgnoreFile */
+
+/**
+ * SkyBox Checkout - Change Country Template
+ *
+ * @var $block \Skybox\Checkout\Block\Cart
+ */
+
+$helperData = $block->getDataHelper();
+if (is_null($helperData->getClient())) {
+    return false;
+}
+
+$helper = $block->getConfigHelper();
+
+if ($helper->getEnabled()):
+    $allow = $helperData->allowed();
+
+    $assetRepository            = $block->getAssetRepository();
+    $cssVersion                 = $block->getDataHelper()->getCssVersion();
+    $cssSkybox                  = "{$helper->getUrlClient()}widgets/api-button/css/api-button-international-css.ashx?s=";
+    $cssSkybox                  .= "{$helper->getMerchantId()}&CssVersion={$cssVersion}";
+    $cssAssetFancybox           = $assetRepository->createAsset('Skybox_Checkout/css/jquery.fancybox.min.css');
+    $cssAsset                   = $assetRepository->createRemoteAsset($cssSkybox, 'css');
+    $jsAsset                    = $assetRepository->createAsset('Skybox_Checkout/js/cart/main.js');
+    $isVisible                  = $block->getDataHelper()->getLocationAllow();
+    $skyboxCurrency             = $block->getDataHelper()->getCurrencySymbol();
+    $mainJsUrl                  = $jsAsset->getUrl();
+    $registrationDisabledSkybox = 1;
+    ?>
+    <link href="<?php /** @escapeNotVerified */ echo $cssAssetFancybox->getUrl(); ?>" rel="stylesheet" type="text/css"/>
+    <?php if ($allow->isPriceEnabled()): ?>
+        <style>
+            #block-shipping .title { display: none; }
+            table.totals > tbody > tr.totals:not(.summary):not(.grand) { display: none; }
+        </style>
+    <?php endif; ?>
+    <script type="text/javascript">//<![CDATA[
+        var MERCHANT_ID_SKYBOX              = "<?php /* @escapeNotVerified */ echo $helper->getMerchantId(); ?>";
+        var SKYBOX_URL                      = "<?php /* @escapeNotVerified */ echo $helper->getUrlClient(); ?>";
+        var IS_REGISTRATION_DISABLED_SKYBOX = <?php /* @escapeNotVerified */ echo $registrationDisabledSkybox; ?>;
+        var CART_DATA_URL_SKYBOX            = "<?php /* @escapeNotVerified */ echo $helperData->getCartDataURL(); ?>";
+        var IS_SKYBOX_VISIBLE               = "<?php /* @escapeNotVerified */ echo $isVisible; ?>";
+        var URL_BASE_MAGENTO                = "<?php /* @escapeNotVerified */ echo $block->escapeUrl($block->getBaseUrl()); ?>";
+        var SKYBOX_CURRENCY                 = "<?php /* @escapeNotVerified */ echo $skyboxCurrency; ?>";
+        //]]>
+    </script>
+    <script type="text/javascript" src="<?php /* @escapeNotVerified */ echo $block->escapeUrl($mainJsUrl); ?>"></script>
+    <?php if ($allow->isCartBarEnabled()): ?>
+        <link href="<?php /* @escapeNotVerified */ echo $block->escapeUrl($cssAsset->getUrl()); ?>" rel="stylesheet" type="text/css"/>
+        <?php /* @escapeNotVerified */ echo $helperData->getNavigationBar(); ?>
+    <?php endif; ?>
+    <?php if ($allow->isChangeCountryEnabled()): ?>
+        <style type="text/css">
+            .skx_change_country_container {
+                width:90%;margin:5px auto;color:#FF5501;text-decoration:none;
+                font-family: "Raleway", "Helvetica Neue", Verdana, Arial, sans-serif;font-size: 14px;
+            }
+            .skx_change_country_container:hover { color:#2c2c2c; text-decoration:none; }
+            .skx_position_option_country_old::after {
+                    color:#333333;content:"\f078";font-family:"FontAwesome";font-size:8px;text-align:left;
+                    margin-left:8px;padding:0 5px 0 0;vertical-align:15%;
+            }
+            </style>
+        <div class="skx_change_country_container">
+            <a href='#' class='skx_position_option_country skx_change_country_container'>
+                <?php /* @escapeNotVerified */ echo $block->getCountryTitle(); ?>
+            </a>
+        </div>
+    <?php endif; ?>
+    <?php if ($block->updateLocalStorage()):
+        $jsAsset = $assetRepository->createAsset('Skybox_Checkout/js/cart/clean.js');
+        ?>
+        <script src="<?php /* @escapeNotVerified */ echo $block->escapeUrl($jsAsset->getUrl()); ?>"></script>
+    <?php endif; ?>
+    <?php $jsMultiAsset = $assetRepository->createAsset('Skybox_Checkout/js/cart/multicalculate.js'); ?>
+    <script src="<?php /* @escapeNotVerified */ echo $block->escapeUrl($jsMultiAsset->getUrl()); ?>"></script>
+<?php endif; ?>

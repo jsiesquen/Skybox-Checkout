@@ -1,0 +1,38 @@
+<?php
+/**
+ * Copyright © 2017 SkyBox Checkout Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/* @codingStandardsIgnoreFile */
+
+/**
+ * SkyBox Checkout - Shopping cart template
+ *
+ * @var \Skybox\Checkout\Block\InContext\Minicart\Button $block
+ */
+
+use Skybox\Checkout\Block\InContext\Minicart\Button;
+
+$config = [
+    'Skybox_Checkout/js/in-context/button' => [
+        'id'                => $block->getContainerId(),
+        'skyboxButton'      => Button::SKYBOX_BUTTON_ID,
+        'addToCartSelector' => $block->getAddToCartSelector()
+    ]
+];
+
+?>
+<div data-mage-init="<?php /* @escapeNotVerified */ echo json_encode($config); ?>"
+     class="skybox checkout skybox-logo <?php /* @escapeNotVerified */ echo $block->getContainerId(); ?>-container paypal-logo">
+    <a id="<?php /* @escapeNotVerified */ echo $block->getContainerId(); ?>" href="<?php /* @escapeNotVerified */ echo $block->escapeUrl($block->getRedirectUrl()); ?>">
+        <img class="skybox-button-hidden"
+             src="<?php /* @escapeNotVerified */ echo $block->escapeUrl($block->getImageUrl()) ?>"
+             alt="Check out with SkyBox" />
+    </a>
+    <style>
+        .skx-cp-txt-intlcheckout { font-family:Arial, Helvetica, sans-serif; font-size:14px; color:#666; }
+        .skx-cp-txt-intlcheckout strong { font-weight: 600; color:#007ac4; }
+    </style>
+    <p class="skx-cp-txt-intlcheckout">Pay all charges online in <strong>local currency</strong>. 100% Guarantee.</p>
+</div>

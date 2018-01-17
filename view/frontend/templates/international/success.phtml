@@ -1,0 +1,64 @@
+<?php
+/**
+ * Copyright © 2017 SkyBox Checkout Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/* @codingStandardsIgnoreFile */
+
+?>
+<div>
+    <div class="cssload-container-iframe">
+        <div class="cssload-zenith-iframe"></div>
+    </div>
+
+    <?php
+    if (isset($messageSuccess)) {
+        echo /* @escapeNotVerified */ "<div> {$messageSuccess} </div>";
+    }
+
+    echo /* @escapeNotVerified */ '<div id="sbc-invoice-html"></div>';
+
+    if (!empty($tagCartOrdered)) {
+        echo /* @escapeNotVerified */ '<div id="sbc-tag-cart-ordered"></div>';
+    };
+    ?>
+</div>
+
+<script>//<![CDATA[
+    require([
+        'jquery',
+        'mage/mage',
+        'mage/adminhtml/tools',
+        'mage/adminhtml/form'
+    ], function ($) {
+
+        $(document).ready(function () {
+            function getBaseData(content) {
+                var result;
+                try {
+                    result = Base64.decode(content);
+                } catch (err) {
+                    result = content;
+                }
+                return result;
+            }
+
+            if ($('#sbc-invoice-html').length > 0) {
+                var invoiceResult = getBaseData('<?php /* @escapeNotVerified */ echo $invoiceHtml; ?>');
+                $('#sbc-invoice-html').html(invoiceResult);
+            }
+
+            if ($('#sbc-tag-cart-ordered').length > 0) {
+                var tagCartResult = getBaseData('<?php /* @escapeNotVerified */ echo $tagCartOrdered; ?>');
+                $('#sbc-tag-cart-ordered').html(tagCartResult);
+            }
+
+            setTimeout(function () {
+                document.getElementsByClassName("cssload-container-iframe")[0].style.display = "none";
+            }, 3800);
+        });
+
+    });
+    //]]>
+</script>
