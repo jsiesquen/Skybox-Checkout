@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2017 SkyBox Checkout Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Skybox_Checkout::Main" title="Skybox Checkout" module="Skybox_Checkout" sortOrder="10"
+             resource="Skybox_Checkout::Main"/>
+        <add id="Skybox_Checkout::Configuration" title="Settings" module="Skybox_Checkout" sortOrder="20"
+             parent="Skybox_Checkout::Main" resource="Skybox_Checkout::Configuration"/>
+        <add id="Skybox_Checkout::Configuration_Setting" title="Skybox Checkout Configuration" module="Skybox_Checkout"
+             sortOrder="6" parent="Skybox_Checkout::Configuration"
+             action="adminhtml/system_config/edit/section/skyboxcheckout"
+             resource="Skybox_Checkout::Configuration_Setting"/>
+    </menu>
+</config>

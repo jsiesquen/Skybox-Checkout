@@ -1,0 +1,12 @@
+<!-- ko if: isDisplayed() -->
+<!-- ko foreach: getDynamicLabels() -->
+<tr class="totals summary checkout_total">
+    <th class="mark" scope="row">
+        <span class="title" data-bind="text: $data.title"></span>
+    </th>
+    <td class="amount">
+        <span class="price" data-bind="text: $data.value, attr: {'data-th': title}"></span>
+    </td>
+</tr>
+<!-- /ko -->
+<!-- /ko -->

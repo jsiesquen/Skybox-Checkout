@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2017 SkyBox Checkout Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="skybox" translate="label" sortOrder="450">
+            <label>skybox</label>
+        </tab>
+        <section id="skyboxcheckout" translate="label" type="text" sortOrder="300" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Skybox Checkout Settings</label>
+            <tab>skybox</tab>
+            <resource>Skybox_Checkout::config_skyboxcheckout</resource>
+            <group id="settings" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Merchant Settings</label>
+                <field id="skb_enable_frontend" translate="label comment" type="select" sortOrder="0"  showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <comment>Enable frontend</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="skb_merchant_id" translate="label comment" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Merchant Id</label>
+                    <comment>Code Merchant by Skybox Checkout International</comment>
+                </field>
+                <field id="skb_merchant_key" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Merchant Key</label>
+                    <comment>Key Merchant by Skybox Checkout International</comment>
+                    <!--<comment><![CDATA["Need a New Relic account? <a href="http://www.newrelic.com/magento" target="_blank">Click here to get one]]></comment>-->
+                </field>
+                <!--//Atributte Field tag (Use System Value) => canRestore="1"-->
+                <field id="skb_weight_unit" translate="label comment" type="select" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Weight Unit</label>
+                    <comment>Source model provider Magento's unit of measure values</comment>
+                    <source_model>Skybox\Checkout\Model\Config\Source\Measureofunit</source_model>
+                </field>
+                <!--//Atributte field (Use System Value) => canRestore="1"-->
+                <field id="skb_api_response" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Save API Responses</label>
+                    <comment>Save request log</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="skb_email" translate="label comment" type="text" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>SkyBox Email</label>
+                    <comment>Set SkyBox Email</comment>
+                </field>
+                <field id="skb_url_api" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>SkyBox Url API</label>
+                    <comment>Url API By Skybox Checkout International</comment>
+                </field>
+                <field id="skb_url_client" translate="label comment" type="text" sortOrder="35" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>SkyBox Url Client</label>
+                    <comment>Url Client By Skybox Checkout International</comment>
+                </field>
+                <!--<field id="skb_store_type" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">-->
+                    <!--<label>Store type</label>-->
+                    <!--<comment>Store type skybox</comment>-->
+                    <!--<source_model>Skybox\Checkout\Model\Config\Source\StoreType</source_model>-->
+                <!--</field>-->
+            </group>
+            <!--<group id="implement" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">-->
+                <!--<label>Implement Code</label>-->
+                <!--<frontend_model>Magestore\Bannerslider\Block\Adminhtml\System\Config\Implementcode</frontend_model>-->
+            <!--</group>-->
+        </section>
+        <!--[Add skybox_checkout to global system "Payment" group]-->
+        <section id="payment">
+            <group id="skybox_checkout_payment" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Skybox Checkout</label>
+                <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+        </section>
+        <!--[Add skybox_checkout to global system "Carriers" group]-->
+        <section id="carriers">
+            <group id="skybox_checkout_shipping" translate="label" type="text" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>SkyBox Checkout</label>
+                <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Enabled for Checkout</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="sort_order" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Sort Order</label>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
